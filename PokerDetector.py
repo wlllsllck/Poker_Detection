@@ -1,11 +1,3 @@
-############## Python-OpenCV Playing Card Detector ###############
-#
-# Author: Evan Juras
-# Date: 9/5/17
-# Description: Python script to detect and identify playing cards
-# from a PiCamera video feed.
-#
-
 # Import necessary packages
 import cv2
 import numpy as np

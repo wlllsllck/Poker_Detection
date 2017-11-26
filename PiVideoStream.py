@@ -1,17 +1,3 @@
-############## PiCamera video stream creator ###############
-#
-# Author: Evan Juras  (heavily copying from Adrian Rosebrock)
-# Date: 9/5/17
-# Description: Defines the PiVideoStream object, which controls
-# acquisition of frames from the PiCamera. The object uses multi-threading to
-# aquire camera frames in a separate thread from the main program. This allows
-# the main thread to grab the most recent camera frame without having to take 
-# it directly from the camera feed, reducing I/O time, which slightly improves 
-# framerate.
-#
-# See http://www.pyimagesearch.com/2015/12/28/increasing-raspberry-pi-fps-with-python-and-opencv/
-# for a full explanation of the source code.
-
 # Import the necessary packages
 from picamera.array import PiRGBArray
 from picamera import PiCamera
