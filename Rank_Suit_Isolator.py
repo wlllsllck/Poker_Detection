@@ -1,8 +1,3 @@
-### Takes a card picture and creates a top-down 200x300 flattened image
-### of it. Isolates the suit and rank and saves the isolated images.
-### Runs through A - K ranks and then the 4 suits.
-
-# Import necessary packages
 from picamera.array import PiRGBArray
 from picamera import PiCamera
 import cv2
@@ -22,13 +17,11 @@ RANK_HEIGHT = 125
 SUIT_WIDTH = 70
 SUIT_HEIGHT = 100
 
-# initialize camera and grab reference to the raw capture
 camera = PiCamera()
 camera.resolution = (IM_WIDTH,IM_HEIGHT)
 camera.framerate = 10
 rawCapture = PiRGBArray(camera, size=(IM_WIDTH,IM_HEIGHT))
 
-# Use counter variable to switch from isolating Rank to isolating Suit
 i = 1
 
 for Name in ['Ace','Two','Three','Four','Five','Six','Seven','Eight',
@@ -59,11 +52,9 @@ for Name in ['Ace','Two','Three','Four','Five','Six','Seven','Eight',
     blur = cv2.GaussianBlur(gray,(5,5),0)
     retval, thresh = cv2.threshold(blur,100,255,cv2.THRESH_BINARY)
 
-    # Find contours and sort them by size
     dummy,cnts,hier = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
     cnts = sorted(cnts, key=cv2.contourArea,reverse=True)
 
-    # Assume largest contour is the card. If there are no contours, print an error
     flag = 0
     image2 = image.copy()
 
@@ -73,7 +64,6 @@ for Name in ['Ace','Two','Three','Four','Five','Six','Seven','Eight',
 
     card = cnts[0]
 
-    # Approximate the corner points of the card
     peri = cv2.arcLength(card,True)
     approx = cv2.approxPolyDP(card,0.01*peri,True)
     pts = np.float32(approx)
